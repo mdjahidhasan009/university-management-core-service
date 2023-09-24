@@ -12,7 +12,7 @@ const insertIntoDB = catchAsync(async (req: Request, res: Response) => {
   sendResponse<AcademicSemester>(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: "Academic Semster Created!!",
+    message: "Academic Semester Created!!",
     data: result
   })
 })
@@ -26,7 +26,7 @@ const getAllFromDB = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: "Academic Semster data fetched!!",
+    message: "Academic Semester data fetched!!",
     meta: result.meta,
     data: result.data
   })
@@ -37,7 +37,7 @@ const getDataById = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: "Academic Semster data fetched!!",
+    message: "Academic Semester data fetched!!",
     data: result
   })
 })
@@ -48,7 +48,7 @@ const updateOneInDB = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Academic Semster updated successfully',
+    message: 'Academic Semester updated successfully',
     data: result
   });
 });
@@ -59,7 +59,7 @@ const deleteByIdFromDB = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Academic Semster delete successfully',
+    message: 'Academic Semester delete successfully',
     data: result
   });
 });

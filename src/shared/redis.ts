@@ -1,4 +1,4 @@
-import {createClient, SetOptions} from "redis";
+import { SetOptions, createClient } from "redis";
 import config from "../config";
 
 const redisClient = createClient({
@@ -13,26 +13,26 @@ const redisSubClient = createClient({
   url: config.redis.url
 });
 
-redisClient.on('error', (err) => console.log('Redis error: ', err));
-redisClient.on('connect', () => console.log('Redis connected'));
+redisClient.on('error', (error) => console.log('RedisError', error))
+redisClient.on('connect', (error) => console.log('Redis Connected'))
 
 const connect = async (): Promise<void> => {
   await redisClient.connect();
   await redisPubClient.connect();
   await redisSubClient.connect();
-}
+};
 
 const set = async (key: string, value: string, options?: SetOptions): Promise<void> => {
   await redisClient.set(key, value, options);
-}
+};
 
 const get = async (key: string): Promise<string | null> => {
   return await redisClient.get(key);
-}
+};
 
 const del = async (key: string): Promise<void> => {
   await redisClient.del(key);
-}
+};
 
 const setAccessToken = async (userId: string, token: string): Promise<void> => {
   const key = `access-token:${userId}`;
@@ -41,10 +41,10 @@ const setAccessToken = async (userId: string, token: string): Promise<void> => {
 
 const getAccessToken = async (userId: string): Promise<string | null> => {
   const key = `access-token:${userId}`;
-  return await redisClient.get(key);
-}
+  return await redisClient.get(key)
+};
 
-const deleteAccessToken = async (userId: string): Promise<void> => {
+const delAccessToken = async (userId: string): Promise<void> => {
   const key = `access-token:${userId}`;
   await redisClient.del(key);
 }
@@ -52,7 +52,7 @@ const deleteAccessToken = async (userId: string): Promise<void> => {
 const disconnect = async (): Promise<void> => {
   await redisClient.quit();
   await redisPubClient.quit();
-  await redisSubClient.disconnect();
+  await redisSubClient.quit();
 }
 
 export const RedisClient = {
@@ -61,9 +61,9 @@ export const RedisClient = {
   get,
   del,
   setAccessToken,
-  disconnect,
   getAccessToken,
-  deleteAccessToken,
+  delAccessToken,
+  disconnect,
   publish: redisPubClient.publish.bind(redisPubClient),
-  subscribe: redisSubClient.subscribe.bind(redisSubClient),
+  subscribe: redisSubClient.subscribe.bind(redisSubClient)
 }

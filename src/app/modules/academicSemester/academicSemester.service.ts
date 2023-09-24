@@ -4,13 +4,29 @@ import { IGenericResponse } from "../../../interfaces/common";
 import { IPaginationOptions } from "../../../interfaces/pagination";
 import prisma from "../../../shared/prisma";
 import { IAcademicSemeterFilterRequest } from "./academicSemester.interface";
-import { AcademicSemesterSearchAbleFields } from "./academicSemeter.contants";
+import {AcademicSemesterSearchAbleFields, academicSemesterTitleCodeMapper} from "./academicSemeter.contants";
+import ApiError from "../../../errors/ApiError";
+import httpStatus from "http-status";
+import {RedisClient} from "../../../shared/redis";
+import {
+    EVENT_ACADEMIC_SEMESTER_CREATED,
+    EVENT_ACADEMIC_SEMESTER_DELETED,
+    EVENT_ACADEMIC_SEMESTER_UPDATED
+} from "./academicSemester.contants";
 
 
 const insertIntoDB = async (academicSemesterData: AcademicSemester): Promise<AcademicSemester> => {
+    if (academicSemesterTitleCodeMapper[academicSemesterData.title] !== academicSemesterData.code) {
+        throw new ApiError(httpStatus.BAD_REQUEST, 'Invalid Semester Code');
+    }
+
     const result = await prisma.academicSemester.create({
         data: academicSemesterData
     })
+
+    if(result) {
+        await RedisClient.publish(EVENT_ACADEMIC_SEMESTER_CREATED, JSON.stringify(result));
+    }
 
     return result;
 }
@@ -21,7 +37,6 @@ const getAllFromDB = async (
 ): Promise<IGenericResponse<AcademicSemester[]>> => {
     const { page, limit, skip } = paginationHelpers.calculatePagination(options);
     const { searchTerm, ...filterData } = filters;
-    console.log(options)
     const andConditons = [];
 
     if (searchTerm) {
@@ -99,6 +114,9 @@ const updateOneInDB = async (
         },
         data: payload
     });
+    if (result) {
+        await RedisClient.publish(EVENT_ACADEMIC_SEMESTER_UPDATED, JSON.stringify(result))
+    }
     return result;
 };
 
@@ -108,6 +126,10 @@ const deleteByIdFromDB = async (id: string): Promise<AcademicSemester> => {
             id
         }
     });
+
+    if (result) {
+        await RedisClient.publish(EVENT_ACADEMIC_SEMESTER_DELETED, JSON.stringify(result));
+    }
     return result;
 };
 

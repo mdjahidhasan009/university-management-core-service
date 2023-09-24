@@ -65,7 +65,10 @@ const globalErrorHandler: ErrorRequestHandler = (
       : [];
   }
 
+  console.log(`🐱‍🏍 globalErrorHandler ~~`, { errorMessages })
+  console.log(statusCode)
   res.status(statusCode).json({
+    statusCode: statusCode,
     success: false,
     message,
     errorMessages,
