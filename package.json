@@ -13,7 +13,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rimraf dist && tsc",
     "ts.check": "tsc --project tsconfig.json",
-    "add-build": "git add dist"
+    "add-build": "git add dist",
+    "postinstall": "prisma generate"
   },
   "author": "Programming Hero",
   "license": "ISC",
