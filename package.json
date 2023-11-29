@@ -11,7 +11,9 @@
     "prettier:fix": "prettier --write .",
     "lint-prettier": "yarn lint:check && yarn prettier:check",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc"
+    "build": "rimraf dist && tsc",
+    "ts.check": "tsc --project tsconfig.json",
+    "add-build": "git add dist"
   },
   "author": "Programming Hero",
   "license": "ISC",
@@ -29,7 +31,9 @@
     "lint-staged": "^13.2.2",
     "prettier": "^2.8.8",
     "ts-node-dev": "^2.0.0",
-    "typescript": "^5.0.4"
+    "typescript": "^5.0.4",
+    "rimraf": "^5.0.5",
+    "ts-node": "^10.9.1"
   },
   "dependencies": {
     "@prisma/client": "^5.1.1",
