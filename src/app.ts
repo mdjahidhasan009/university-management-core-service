@@ -8,7 +8,16 @@ import cookieParser from 'cookie-parser';
 
 const app: Application = express();
 
-app.use(cors());
+app.use(cors({
+  origin: (origin, callback) => {
+    if ((process.env.CORS && process.env.CORS.includes(<string>origin)) || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true
+}));
 app.use(cookieParser());
 
 //parser

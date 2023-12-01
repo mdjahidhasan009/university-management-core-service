@@ -26,4 +26,5 @@ exports.default = {
         expires_in: process.env.REDIS_TOKEN_EXPIRES_IN,
     },
     initPaymentEndpoint: process.env.INIT_PAYMENT_URL,
+    cors: process.env.CORS
 };
