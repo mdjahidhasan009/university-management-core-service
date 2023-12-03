@@ -81,7 +81,7 @@ const startMyRegistration = (0, catchAsync_1.default)((req, res) => __awaiter(vo
     });
 }));
 const enrollIntoCourse = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const user = req.user;
+    const user = req;
     const result = yield semesterRegistration_service_1.SemesterRegistrationService.enrollIntoCourse(user.userId, req.body);
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
