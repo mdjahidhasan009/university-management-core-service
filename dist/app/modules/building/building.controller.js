@@ -29,7 +29,6 @@ const insertIntoDB = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, v
     });
 }));
 const getAllFromDB = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(req.query);
     const filters = (0, pick_1.default)(req.query, building_constants_1.buildingFilterableFields);
     const options = (0, pick_1.default)(req.query, ['limit', 'page', 'sortBy', 'sortOrder']);
     const result = yield building_service_1.BuildingService.getAllFromDB(filters, options);

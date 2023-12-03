@@ -61,7 +61,6 @@ const globalErrorHandler = (error, req, res, next) => {
             : [];
     }
     console.log(`🐱‍🏍 globalErrorHandler ~~`, { errorMessages });
-    console.log(statusCode);
     res.status(statusCode).json({
         statusCode: statusCode,
         success: false,

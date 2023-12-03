@@ -32,8 +32,6 @@ const utils_1 = require("../../../shared/utils");
 const course_constants_1 = require("./course.constants");
 const insertIntoDB = (data) => __awaiter(void 0, void 0, void 0, function* () {
     const { preRequisiteCourses } = data, courseData = __rest(data, ["preRequisiteCourses"]);
-    console.log("course data", courseData);
-    console.log("pre requisite course data: ", preRequisiteCourses);
     const newCourse = yield prisma_1.default.$transaction((transactionClient) => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield transactionClient.course.create({
             data: courseData
