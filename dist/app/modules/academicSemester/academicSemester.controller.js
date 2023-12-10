@@ -18,24 +18,24 @@ const catchAsync_1 = __importDefault(require("../../../shared/catchAsync"));
 const pick_1 = __importDefault(require("../../../shared/pick"));
 const sendResponse_1 = __importDefault(require("../../../shared/sendResponse"));
 const academicSemester_service_1 = require("./academicSemester.service");
-const academicSemeter_contants_1 = require("./academicSemeter.contants");
+const academicSemester_contants_1 = require("./academicSemester.contants");
 const insertIntoDB = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield academicSemester_service_1.AcademicSemesterService.insertIntoDB(req.body);
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        message: "Academic Semester Created!!",
+        message: "Academic Semster Created!!",
         data: result
     });
 }));
 const getAllFromDB = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const filters = (0, pick_1.default)(req.query, academicSemeter_contants_1.AcademicSemesterFilterAbleFileds);
+    const filters = (0, pick_1.default)(req.query, academicSemester_contants_1.AcademicSemesterFilterAbleFileds);
     const options = (0, pick_1.default)(req.query, ['limit', 'page', 'sortBy', 'sortOrder']);
     const result = yield academicSemester_service_1.AcademicSemesterService.getAllFromDB(filters, options);
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        message: "Academic Semester data fetched!!",
+        message: "Academic Semster data fetched!!",
         meta: result.meta,
         data: result.data
     });
@@ -45,7 +45,7 @@ const getDataById = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, vo
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        message: "Academic Semester data fetched!!",
+        message: "Academic Semster data fetched!!",
         data: result
     });
 }));
@@ -55,7 +55,7 @@ const updateOneInDB = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, 
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        message: 'Academic Semester updated successfully',
+        message: 'Academic Semster updated successfully',
         data: result
     });
 }));
@@ -65,7 +65,7 @@ const deleteByIdFromDB = (0, catchAsync_1.default)((req, res) => __awaiter(void 
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        message: 'Academic Semester delete successfully',
+        message: 'Academic Semster delete successfully',
         data: result
     });
 }));

@@ -1,9 +1,9 @@
 import { Server } from 'http';
 import app from './app';
+import subscribeToEvents from './app/events';
 import config from './config';
 // import { errorlogger, logger } from './shared/logger';
 import { RedisClient } from "./shared/redis";
-import subscribeToEvents from "./app/events";
 
 
 async function bootstrap() {

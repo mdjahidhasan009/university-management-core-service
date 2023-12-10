@@ -26,20 +26,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AcademicSemesterService = void 0;
 const paginationHelper_1 = require("../../../helpers/paginationHelper");
 const prisma_1 = __importDefault(require("../../../shared/prisma"));
-const academicSemeter_contants_1 = require("./academicSemeter.contants");
+const academicSemester_contants_1 = require("./academicSemester.contants");
 const ApiError_1 = __importDefault(require("../../../errors/ApiError"));
 const http_status_1 = __importDefault(require("http-status"));
 const redis_1 = require("../../../shared/redis");
-const academicSemester_contants_1 = require("./academicSemester.contants");
+const academicSemester_contants_2 = require("./academicSemester.contants");
 const insertIntoDB = (academicSemesterData) => __awaiter(void 0, void 0, void 0, function* () {
-    if (academicSemeter_contants_1.academicSemesterTitleCodeMapper[academicSemesterData.title] !== academicSemesterData.code) {
+    if (academicSemester_contants_1.academicSemesterTitleCodeMapper[academicSemesterData.title] !== academicSemesterData.code) {
         throw new ApiError_1.default(http_status_1.default.BAD_REQUEST, 'Invalid Semester Code');
     }
     const result = yield prisma_1.default.academicSemester.create({
         data: academicSemesterData
     });
     if (result) {
-        yield redis_1.RedisClient.publish(academicSemester_contants_1.EVENT_ACADEMIC_SEMESTER_CREATED, JSON.stringify(result));
+        yield redis_1.RedisClient.publish(academicSemester_contants_2.EVENT_ACADEMIC_SEMESTER_CREATED, JSON.stringify(result));
     }
     return result;
 });
@@ -49,7 +49,7 @@ const getAllFromDB = (filters, options) => __awaiter(void 0, void 0, void 0, fun
     const andConditons = [];
     if (searchTerm) {
         andConditons.push({
-            OR: academicSemeter_contants_1.AcademicSemesterSearchAbleFields.map((field) => ({
+            OR: academicSemester_contants_1.AcademicSemesterSearchAbleFields.map((field) => ({
                 [field]: {
                     contains: searchTerm,
                     mode: 'insensitive'
@@ -66,11 +66,6 @@ const getAllFromDB = (filters, options) => __awaiter(void 0, void 0, void 0, fun
             }))
         });
     }
-    /**
-     * person = { name: 'fahim' }
-     * name = person[name]
-     *
-     */
     const whereConditons = andConditons.length > 0 ? { AND: andConditons } : {};
     const result = yield prisma_1.default.academicSemester.findMany({
         where: whereConditons,
@@ -110,7 +105,7 @@ const updateOneInDB = (id, payload) => __awaiter(void 0, void 0, void 0, functio
         data: payload
     });
     if (result) {
-        yield redis_1.RedisClient.publish(academicSemester_contants_1.EVENT_ACADEMIC_SEMESTER_UPDATED, JSON.stringify(result));
+        yield redis_1.RedisClient.publish(academicSemester_contants_2.EVENT_ACADEMIC_SEMESTER_UPDATED, JSON.stringify(result));
     }
     return result;
 });
@@ -121,7 +116,7 @@ const deleteByIdFromDB = (id) => __awaiter(void 0, void 0, void 0, function* () 
         }
     });
     if (result) {
-        yield redis_1.RedisClient.publish(academicSemester_contants_1.EVENT_ACADEMIC_SEMESTER_DELETED, JSON.stringify(result));
+        yield redis_1.RedisClient.publish(academicSemester_contants_2.EVENT_ACADEMIC_SEMESTER_DELETED, JSON.stringify(result));
     }
     return result;
 });

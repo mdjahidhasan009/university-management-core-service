@@ -178,14 +178,14 @@ const removeCourses = async (
 }
 
 const myCourses = async (
-  authUser: {
-      userId: string,
-      role: string
-  },
-  filter: {
-      academicSemesterId?: string | null | undefined,
-      courseId?: string | null | undefined
-  }
+    authUser: {
+        userId: string,
+        role: string
+    },
+    filter: {
+        academicSemesterId?: string | null | undefined,
+        courseId?: string | null | undefined
+    }
 ) => {
     if (!filter.academicSemesterId) {
         const currentSemester = await prisma.academicSemester.findFirst({
@@ -263,10 +263,12 @@ const myCourses = async (
 
 
 const getMyCourseStudents = async (
-  filters: IFacultyMyCourseStudentsRequest,
-  options: IPaginationOptions,
-  authUser: any
+    filters: IFacultyMyCourseStudentsRequest,
+    options: IPaginationOptions,
+    authUser: any
 ): Promise<IGenericResponse<Student[]>> => {
+    // console.log(filters)
+    console.log(options)
     const { limit, page, skip } = paginationHelpers.calculatePagination(options);
     console.log(authUser)
     if (!filters.academicSemesterId) {
@@ -307,7 +309,7 @@ const getMyCourseStudents = async (
     });
 
     const students = offeredCourseSections.map(
-      (offeredCourseSection) => offeredCourseSection.student
+        (offeredCourseSection) => offeredCourseSection.student
     );
 
     const total = await prisma.studentSemesterRegistrationCourse.count({

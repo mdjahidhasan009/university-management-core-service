@@ -13,10 +13,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const app_1 = __importDefault(require("./app"));
+const events_1 = __importDefault(require("./app/events"));
 const config_1 = __importDefault(require("./config"));
 // import { errorlogger, logger } from './shared/logger';
 const redis_1 = require("./shared/redis");
-const events_1 = __importDefault(require("./app/events"));
 function bootstrap() {
     return __awaiter(this, void 0, void 0, function* () {
         yield redis_1.RedisClient.connect().then(() => {

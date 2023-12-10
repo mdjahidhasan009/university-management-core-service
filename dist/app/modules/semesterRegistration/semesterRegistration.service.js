@@ -167,6 +167,7 @@ const deleteByIdFromDB = (id) => __awaiter(void 0, void 0, void 0, function* () 
     return result;
 });
 const startMyRegistration = (authUserId) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log('authUserId', authUserId);
     const studentInfo = yield prisma_1.default.student.findFirst({
         where: {
             studentId: authUserId
@@ -229,6 +230,14 @@ const confirmMyRegistration = (authUserId) => __awaiter(void 0, void 0, void 0, 
         }
     });
     // 3 - 6
+    ////TODO:warning
+    ////TODO: have to check if the student is already confirmed or not
+    // const student = await prisma.student.findFirst({
+    //     where: {
+    //         studentId: authUserId
+    //     }
+    // });
+    // console.log('student', student)
     const studentSemesterRegistration = yield prisma_1.default.studentSemesterRegistration.findFirst({
         where: {
             semesterRegistration: {

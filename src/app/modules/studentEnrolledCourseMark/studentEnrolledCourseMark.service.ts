@@ -292,7 +292,6 @@ const updateFinalMarks = async (payload: any) => {
     return grades;
 }
 
-
 const getMyCourseMarks = async (
   filters: IStudentEnrolledCourseMarkFilterRequest,
   options: IPaginationOptions,

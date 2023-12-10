@@ -1,8 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EVENT_ACADEMIC_SEMESTER_DELETED = exports.EVENT_ACADEMIC_SEMESTER_UPDATED = exports.EVENT_ACADEMIC_SEMESTER_CREATED = exports.academicSemesterMonths = exports.academicSemesterCodes = exports.academicSemesterTitles = exports.academicSemesterTitleCodeMapper = exports.AcademicSemesterFilterAbleFileds = exports.AcademicSemesterFilterAbleFields = exports.AcademicSemesterSearchableFields = void 0;
-exports.AcademicSemesterSearchableFields = ['title', 'code', 'startMonth', 'endMonth'];
-exports.AcademicSemesterFilterAbleFields = ['searchTerm', 'code', 'startMonth', 'endMonth'];
+exports.EVENT_ACADEMIC_SEMESTER_DELETED = exports.EVENT_ACADEMIC_SEMESTER_UPDATED = exports.EVENT_ACADEMIC_SEMESTER_CREATED = exports.academicSemesterMonths = exports.academicSemesterCodes = exports.academicSemesterTitles = exports.academicSemesterTitleCodeMapper = exports.AcademicSemesterFilterAbleFileds = exports.AcademicSemesterSearchAbleFields = void 0;
+exports.AcademicSemesterSearchAbleFields = ['title', 'code', 'startMonth', 'endMonth'];
 exports.AcademicSemesterFilterAbleFileds = ['searchTerm', 'code', 'startMonth', 'endMonth'];
 exports.academicSemesterTitleCodeMapper = {
     Autumn: '01',

@@ -4,7 +4,7 @@ import { IGenericResponse } from "../../../interfaces/common";
 import { IPaginationOptions } from "../../../interfaces/pagination";
 import prisma from "../../../shared/prisma";
 import { IAcademicSemeterFilterRequest } from "./academicSemester.interface";
-import {AcademicSemesterSearchAbleFields, academicSemesterTitleCodeMapper} from "./academicSemeter.contants";
+import {AcademicSemesterSearchAbleFields, academicSemesterTitleCodeMapper} from "./academicSemester.contants";
 import ApiError from "../../../errors/ApiError";
 import httpStatus from "http-status";
 import {RedisClient} from "../../../shared/redis";
@@ -60,11 +60,6 @@ const getAllFromDB = async (
         })
     }
 
-    /**
-     * person = { name: 'fahim' }
-     * name = person[name]
-     * 
-     */
 
     const whereConditons: Prisma.AcademicSemesterWhereInput =
         andConditons.length > 0 ? { AND: andConditons } : {};

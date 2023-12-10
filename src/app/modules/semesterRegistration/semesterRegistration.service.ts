@@ -188,6 +188,7 @@ const startMyRegistration = async (authUserId: string): Promise<{
     semesterRegistration: SemesterRegistration | null,
     studentSemesterRegistration: StudentSemesterRegistration | null
 }> => {
+    console.log('authUserId', authUserId);
     const studentInfo = await prisma.student.findFirst({
         where: {
             studentId: authUserId
@@ -270,6 +271,15 @@ const confirmMyRegistration = async (authUserId: string): Promise<{ message: str
     })
 
     // 3 - 6
+    ////TODO:warning
+    ////TODO: have to check if the student is already confirmed or not
+    // const student = await prisma.student.findFirst({
+    //     where: {
+    //         studentId: authUserId
+    //     }
+    // });
+    // console.log('student', student)
+
     const studentSemesterRegistration = await prisma.studentSemesterRegistration.findFirst({
         where: {
             semesterRegistration: {

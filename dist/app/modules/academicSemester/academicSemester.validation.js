@@ -6,10 +6,10 @@ const academicSemester_contants_1 = require("./academicSemester.contants");
 const create = zod_1.z.object({
     body: zod_1.z.object({
         year: zod_1.z.number({
-            required_error: 'Year is required'
+            required_error: "Year is required"
         }),
         title: zod_1.z.enum([...academicSemester_contants_1.academicSemesterTitles], {
-            required_error: 'Title is required'
+            required_error: "Title is required"
         }),
         code: zod_1.z.enum([...academicSemester_contants_1.academicSemesterCodes], {
             required_error: "Code is required"

@@ -66,6 +66,7 @@ const deleteByIdFromDB = catchAsync(async (req: Request, res: Response) => {
 
 const startMyRegistration = catchAsync(async (req: Request, res: Response) => {
     const user = (req as any).user;
+    console.log("req", req?.user)
     const result = await SemesterRegistrationService.startMyRegistration(user.userId)
     sendResponse(res, {
         statusCode: httpStatus.OK,
@@ -76,8 +77,9 @@ const startMyRegistration = catchAsync(async (req: Request, res: Response) => {
 })
 
 const enrollIntoCourse = catchAsync(async (req: Request, res: Response) => {
-
-    const user = (req as any);
+    ////TODO: warning
+    // const user = (req as any);
+    const user = (req as any).user;
     const result = await SemesterRegistrationService.enrollIntoCourse(user.userId, req.body)
     sendResponse(res, {
         statusCode: httpStatus.OK,
@@ -100,8 +102,7 @@ const withdrawFromCourse = catchAsync(async (req: Request, res: Response) => {
 })
 
 const confirmMyRegistration = catchAsync(async (req: Request, res: Response) => {
-
-    const user = (req as any).user;
+    const user = (req as any)?.user;
     const result = await SemesterRegistrationService.confirmMyRegistration(user.userId)
     sendResponse(res, {
         statusCode: httpStatus.OK,

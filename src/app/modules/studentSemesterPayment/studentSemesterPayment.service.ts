@@ -216,9 +216,9 @@ const initiatePayment = async (payload: any, user: any) => {
         paymentUrl: paymentResponse.data,
         paymentDetails: isPendingPaymentExist
     }
-}
+};
 
-const completePayment = async (payload: any) => {
+const completePayment = async (payload: { transactionId: string }) => {
     const paymentDetails = await prisma.studentSemesterPaymentHistory.findFirst({
         where: {
             transactionId: payload.transactionId
@@ -281,6 +281,7 @@ const getMySemesterPayments = async (
 ): Promise<IGenericResponse<StudentSemesterPayment[]>> => {
     const { limit, page, skip } = paginationHelpers.calculatePagination(options);
     const { searchTerm, ...filterData } = filters;
+    console.log(authUser)
 
     const student = await prisma.student.findFirst({
         where: {

@@ -72,6 +72,7 @@ const deleteByIdFromDB = (0, catchAsync_1.default)((req, res) => __awaiter(void 
 }));
 const startMyRegistration = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const user = req.user;
+    console.log("req", req === null || req === void 0 ? void 0 : req.user);
     const result = yield semesterRegistration_service_1.SemesterRegistrationService.startMyRegistration(user.userId);
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
@@ -81,7 +82,9 @@ const startMyRegistration = (0, catchAsync_1.default)((req, res) => __awaiter(vo
     });
 }));
 const enrollIntoCourse = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const user = req;
+    ////TODO: warning
+    // const user = (req as any);
+    const user = req.user;
     const result = yield semesterRegistration_service_1.SemesterRegistrationService.enrollIntoCourse(user.userId, req.body);
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
@@ -101,7 +104,7 @@ const withdrawFromCourse = (0, catchAsync_1.default)((req, res) => __awaiter(voi
     });
 }));
 const confirmMyRegistration = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const user = req.user;
+    const user = req === null || req === void 0 ? void 0 : req.user;
     const result = yield semesterRegistration_service_1.SemesterRegistrationService.confirmMyRegistration(user.userId);
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,

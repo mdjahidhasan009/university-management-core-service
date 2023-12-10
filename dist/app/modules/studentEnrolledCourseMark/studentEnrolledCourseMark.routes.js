@@ -12,8 +12,6 @@ const validateRequest_1 = __importDefault(require("../../middlewares/validateReq
 const studentEnrolledCourseMark_validations_1 = require("./studentEnrolledCourseMark.validations");
 const router = express_1.default.Router();
 router.get('/', (0, auth_1.default)(user_1.ENUM_USER_ROLE.ADMIN, user_1.ENUM_USER_ROLE.FACULTY), studentEnrolledCourseMark_controller_1.StudentEnrolledCourseMarkConroller.getAllFromDB);
-router.patch('/update-marks', studentEnrolledCourseMark_controller_1.StudentEnrolledCourseMarkConroller.updateStudentMarks);
-router.patch('/update-final-marks', studentEnrolledCourseMark_controller_1.StudentEnrolledCourseMarkConroller.updateFinalMarks);
 router.get('/my-marks', (0, auth_1.default)(user_1.ENUM_USER_ROLE.STUDENT), studentEnrolledCourseMark_controller_1.StudentEnrolledCourseMarkConroller.getMyCourseMarks);
 router.patch('/update-marks', (0, auth_1.default)(user_1.ENUM_USER_ROLE.ADMIN, user_1.ENUM_USER_ROLE.FACULTY), (0, validateRequest_1.default)(studentEnrolledCourseMark_validations_1.StudentEnrolledCourseMarkValidation.updateStudentMarks), studentEnrolledCourseMark_controller_1.StudentEnrolledCourseMarkConroller.updateStudentMarks);
 router.patch('/update-final-marks', (0, auth_1.default)(user_1.ENUM_USER_ROLE.ADMIN, user_1.ENUM_USER_ROLE.FACULTY), (0, validateRequest_1.default)(studentEnrolledCourseMark_validations_1.StudentEnrolledCourseMarkValidation.updateStudentMarks), studentEnrolledCourseMark_controller_1.StudentEnrolledCourseMarkConroller.updateFinalMarks);

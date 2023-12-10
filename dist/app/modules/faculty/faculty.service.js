@@ -241,6 +241,8 @@ const myCourses = (authUser, filter) => __awaiter(void 0, void 0, void 0, functi
     return courseAndSchedule;
 });
 const getMyCourseStudents = (filters, options, authUser) => __awaiter(void 0, void 0, void 0, function* () {
+    // console.log(filters)
+    console.log(options);
     const { limit, page, skip } = paginationHelper_1.paginationHelpers.calculatePagination(options);
     console.log(authUser);
     if (!filters.academicSemesterId) {

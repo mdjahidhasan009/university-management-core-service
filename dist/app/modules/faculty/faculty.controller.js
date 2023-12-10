@@ -107,6 +107,7 @@ const getMyCourseStudents = (0, catchAsync_1.default)((req, res) => __awaiter(vo
     const user = req.user;
     const filters = (0, pick_1.default)(req.query, ['academicSemesterId', 'courseId', 'offeredCourseSectionId']);
     const options = (0, pick_1.default)(req.query, ['limit', 'page']);
+    console.log(filters, options);
     const result = yield faculty_service_1.FacultyService.getMyCourseStudents(filters, options, user);
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
