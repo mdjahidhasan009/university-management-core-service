@@ -55,6 +55,22 @@ const initiatePayment = (0, catchAsync_1.default)((req, res) => __awaiter(void 0
     });
 }));
 const completePayment = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log('req?.query' + (req === null || req === void 0 ? void 0 : req.query));
+    console.log('req?.body' + (req === null || req === void 0 ? void 0 : req.body));
+    console.log('req?.headers' + (req === null || req === void 0 ? void 0 : req.headers));
+    console.log('req?.cookies' + (req === null || req === void 0 ? void 0 : req.cookies));
+    console.log('req?.params' + (req === null || req === void 0 ? void 0 : req.params));
+    console.log('req?.route' + (req === null || req === void 0 ? void 0 : req.route));
+    console.log('req?.signedCookies' + (req === null || req === void 0 ? void 0 : req.signedCookies));
+    console.log('req?.originalUrl' + (req === null || req === void 0 ? void 0 : req.originalUrl));
+    console.log('req?.baseUrl' + (req === null || req === void 0 ? void 0 : req.baseUrl));
+    console.log('req?.path' + (req === null || req === void 0 ? void 0 : req.path));
+    console.log('req?.hostname' + (req === null || req === void 0 ? void 0 : req.hostname));
+    console.log('req?.ip' + (req === null || req === void 0 ? void 0 : req.ip));
+    console.log('req?.method' + (req === null || req === void 0 ? void 0 : req.method));
+    console.log('req?.protocol' + (req === null || req === void 0 ? void 0 : req.protocol));
+    console.log('req?.secure' + (req === null || req === void 0 ? void 0 : req.secure));
+    console.log('req?.stale' + (req === null || req === void 0 ? void 0 : req.stale));
     const result = yield studentSemesterPayment_service_1.StudentSemesterPaymentService.completePayment(req.body);
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,

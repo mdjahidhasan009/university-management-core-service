@@ -254,7 +254,6 @@ const completePayment = (payload) => __awaiter(void 0, void 0, void 0, function*
 const getMySemesterPayments = (filters, options, authUser) => __awaiter(void 0, void 0, void 0, function* () {
     const { limit, page, skip } = paginationHelper_1.paginationHelpers.calculatePagination(options);
     const { searchTerm } = filters, filterData = __rest(filters, ["searchTerm"]);
-    console.log(authUser);
     const student = yield prisma_1.default.student.findFirst({
         where: {
             studentId: authUser.id

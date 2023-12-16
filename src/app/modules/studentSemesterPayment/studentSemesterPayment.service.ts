@@ -281,7 +281,6 @@ const getMySemesterPayments = async (
 ): Promise<IGenericResponse<StudentSemesterPayment[]>> => {
     const { limit, page, skip } = paginationHelpers.calculatePagination(options);
     const { searchTerm, ...filterData } = filters;
-    console.log(authUser)
 
     const student = await prisma.student.findFirst({
         where: {
