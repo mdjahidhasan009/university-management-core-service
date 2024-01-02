@@ -68,6 +68,8 @@ const completePayment = catchAsync(async (req: Request, res: Response) => {
     // console.log('req?.protocol' + req?.protocol);
     // console.log('req?.secure' + req?.secure);
     // console.log('req?.stale' + req?.stale);
+    console.log(req.headers)
+    console.log(req.headers['X-API-KEY'])
 
     const apiKeyForEcommercePaymentFromReq = req.headers['X-API-KEY'];
 

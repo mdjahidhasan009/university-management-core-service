@@ -72,6 +72,8 @@ const completePayment = (0, catchAsync_1.default)((req, res) => __awaiter(void 0
     // console.log('req?.protocol' + req?.protocol);
     // console.log('req?.secure' + req?.secure);
     // console.log('req?.stale' + req?.stale);
+    console.log(req.headers);
+    console.log(req.headers['X-API-KEY']);
     const apiKeyForEcommercePaymentFromReq = req.headers['X-API-KEY'];
     if (apiKeyForEcommercePaymentFromReq !== config_1.default.apiKeyForEcommercePayment) {
         throw new Error('Invalid API Key');
