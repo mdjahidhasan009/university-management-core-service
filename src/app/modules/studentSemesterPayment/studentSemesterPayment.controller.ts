@@ -70,10 +70,12 @@ const completePayment = catchAsync(async (req: Request, res: Response) => {
     // console.log('req?.stale' + req?.stale);
     console.log(req.headers)
     console.log(req.headers['X-API-KEY'])
+    console.log(req?.body?.data)
+    console.log(req?.body?.data?.apiKey)
 
     const apiKeyForEcommercePaymentFromReq = req.headers['X-API-KEY'];
 
-    if(apiKeyForEcommercePaymentFromReq !== config.apiKeyForEcommercePayment) {
+    if((apiKeyForEcommercePaymentFromReq !== config.apiKeyForEcommercePayment) || (req?.body?.data?.apiKey !== config.apiKeyForEcommercePayment)) {
         throw new Error('Invalid API Key');
     }
 
