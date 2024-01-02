@@ -134,7 +134,6 @@ const getAllFromDB = async (
 };
 
 const updateStudentMarks = async (payload: any) => {
-    console.log(payload)
     const { studentId, academicSemesterId, courseId, examType, marks } = payload;
 
     const studentEnrolledCourseMarks = await prisma.studentEnrolledCourseMark.findFirst({
@@ -254,7 +253,7 @@ const updateFinalMarks = async (payload: any) => {
         }
     });
 
-    const academicResult = await StudentEnrolledCourseMarkUtils.calcCGPAandGrade(grades);
+    const academicResult = StudentEnrolledCourseMarkUtils.calcCGPAandGrade(grades);
 
     const studentAcademicInfo = await prisma.studentAcademicInfo.findFirst({
         where: {

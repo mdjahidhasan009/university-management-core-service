@@ -12,5 +12,7 @@ const router = express_1.default.Router();
 router.get('/', (0, auth_1.default)(user_1.ENUM_USER_ROLE.ADMIN, user_1.ENUM_USER_ROLE.FACULTY), studentSemesterPayment_controller_1.StudentSemesterPaymentController.getAllFromDB);
 router.get('/my-semester-payments', (0, auth_1.default)(user_1.ENUM_USER_ROLE.STUDENT), studentSemesterPayment_controller_1.StudentSemesterPaymentController.getMySemesterPayments);
 router.post('/initiate-payment', (0, auth_1.default)(user_1.ENUM_USER_ROLE.STUDENT), studentSemesterPayment_controller_1.StudentSemesterPaymentController.initiatePayment);
-router.post('/complete-payment', (0, auth_1.default)(user_1.ENUM_USER_ROLE.STUDENT), studentSemesterPayment_controller_1.StudentSemesterPaymentController.completePayment);
+router.post('/complete-payment', 
+// auth(ENUM_USER_ROLE.STUDENT),
+studentSemesterPayment_controller_1.StudentSemesterPaymentController.completePayment);
 exports.studentSemesterPaymentRoutes = router;

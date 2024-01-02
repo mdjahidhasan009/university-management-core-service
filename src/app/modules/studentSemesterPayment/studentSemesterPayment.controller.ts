@@ -5,6 +5,7 @@ import pick from "../../../shared/pick";
 import sendResponse from "../../../shared/sendResponse";
 import { studentSemesterPaymentFilterableFields } from "./studentSemesterPayment.constants";
 import { StudentSemesterPaymentService } from "./studentSemesterPayment.service";
+import config from "../../../config";
 
 const getAllFromDB = catchAsync(async (req: Request, res: Response) => {
     const filters = pick(req.query, studentSemesterPaymentFilterableFields);
@@ -67,6 +68,13 @@ const completePayment = catchAsync(async (req: Request, res: Response) => {
     console.log('req?.protocol' + req?.protocol);
     console.log('req?.secure' + req?.secure);
     console.log('req?.stale' + req?.stale);
+
+    const apiKeyForEcommercePaymentFromReq = req.headers['X-API-KEY'];
+
+    if(apiKeyForEcommercePaymentFromReq !== config.apiKeyForEcommercePayment) {
+        throw new Error('Invalid API Key');
+    }
+
     const result = await StudentSemesterPaymentService.completePayment(req.body);
     sendResponse(res, {
         statusCode: httpStatus.OK,

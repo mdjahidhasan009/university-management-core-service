@@ -19,16 +19,16 @@ router.get(
   StudentEnrolledCourseMarkConroller.getMyCourseMarks
 );
 
-router.patch(
+router.post(
   '/update-marks',
   auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.FACULTY),
   validateRequest(StudentEnrolledCourseMarkValidation.updateStudentMarks),
   StudentEnrolledCourseMarkConroller.updateStudentMarks
 )
-router.patch(
+router.post(
   '/update-final-marks',
   auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.FACULTY),
-  validateRequest(StudentEnrolledCourseMarkValidation.updateStudentMarks),
+  validateRequest(StudentEnrolledCourseMarkValidation.updateStudentCourseFinalMarks),
   StudentEnrolledCourseMarkConroller.updateFinalMarks
 )
 

@@ -19,6 +19,7 @@ const pick_1 = __importDefault(require("../../../shared/pick"));
 const sendResponse_1 = __importDefault(require("../../../shared/sendResponse"));
 const studentSemesterPayment_constants_1 = require("./studentSemesterPayment.constants");
 const studentSemesterPayment_service_1 = require("./studentSemesterPayment.service");
+const config_1 = __importDefault(require("../../../config"));
 const getAllFromDB = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const filters = (0, pick_1.default)(req.query, studentSemesterPayment_constants_1.studentSemesterPaymentFilterableFields);
     const options = (0, pick_1.default)(req.query, ['limit', 'page', 'sortBy', 'sortOrder']);
@@ -71,6 +72,10 @@ const completePayment = (0, catchAsync_1.default)((req, res) => __awaiter(void 0
     console.log('req?.protocol' + (req === null || req === void 0 ? void 0 : req.protocol));
     console.log('req?.secure' + (req === null || req === void 0 ? void 0 : req.secure));
     console.log('req?.stale' + (req === null || req === void 0 ? void 0 : req.stale));
+    const apiKeyForEcommercePaymentFromReq = req.headers['X-API-KEY'];
+    if (apiKeyForEcommercePaymentFromReq !== config_1.default.apiKeyForEcommercePayment) {
+        throw new Error('Invalid API Key');
+    }
     const result = yield studentSemesterPayment_service_1.StudentSemesterPaymentService.completePayment(req.body);
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,

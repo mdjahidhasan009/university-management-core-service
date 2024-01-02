@@ -128,7 +128,6 @@ const getAllFromDB = (filters, options) => __awaiter(void 0, void 0, void 0, fun
     };
 });
 const updateStudentMarks = (payload) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(payload);
     const { studentId, academicSemesterId, courseId, examType, marks } = payload;
     const studentEnrolledCourseMarks = yield prisma_1.default.studentEnrolledCourseMark.findFirst({
         where: {
@@ -235,7 +234,7 @@ const updateFinalMarks = (payload) => __awaiter(void 0, void 0, void 0, function
             course: true
         }
     });
-    const academicResult = yield studentEnrolledCousreMark_utils_1.StudentEnrolledCourseMarkUtils.calcCGPAandGrade(grades);
+    const academicResult = studentEnrolledCousreMark_utils_1.StudentEnrolledCourseMarkUtils.calcCGPAandGrade(grades);
     const studentAcademicInfo = yield prisma_1.default.studentAcademicInfo.findFirst({
         where: {
             student: {
