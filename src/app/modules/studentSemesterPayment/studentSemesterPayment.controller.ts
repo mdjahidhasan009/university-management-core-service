@@ -52,8 +52,10 @@ const initiatePayment = catchAsync(async (req: Request, res: Response) => {
 });
 
 const completePayment = catchAsync(async (req: Request, res: Response) => {
+    console.log('------------------req-------------------');
     console.log(req);
-    console.log('req?.body' + req?.body);
+    console.log('------------------req?.body-------------');
+    console.log(req?.body);
     // console.log('req?.headers' + req?.headers);
     // console.log('req?.cookies' + req?.cookies);
     // console.log('req?.params' + req?.params);
@@ -68,10 +70,14 @@ const completePayment = catchAsync(async (req: Request, res: Response) => {
     // console.log('req?.protocol' + req?.protocol);
     // console.log('req?.secure' + req?.secure);
     // console.log('req?.stale' + req?.stale);
+    console.log('------------------req.headers-------------');
     console.log(req.headers)
+    console.log('------------------X-API-KEY-------------');
     console.log(req.headers['X-API-KEY'])
-    console.log(req?.body?.data)
-    console.log(req?.body?.data?.apiKey)
+    console.log('------------------req?.body-------------');
+    console.log(req?.body)
+    console.log('------------------req?.body?.apiKey-------------');
+    console.log(req?.body?.apiKey)
 
     const apiKeyForEcommercePaymentFromReq = req.headers['X-API-KEY'];
 
