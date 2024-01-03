@@ -56,7 +56,7 @@ const initiatePayment = (0, catchAsync_1.default)((req, res) => __awaiter(void 0
     });
 }));
 const completePayment = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    var _a, _b, _c, _d, _e;
+    var _a, _b, _c, _d;
     console.log(req);
     console.log('req?.body' + (req === null || req === void 0 ? void 0 : req.body));
     // console.log('req?.headers' + req?.headers);
@@ -78,7 +78,7 @@ const completePayment = (0, catchAsync_1.default)((req, res) => __awaiter(void 0
     console.log((_a = req === null || req === void 0 ? void 0 : req.body) === null || _a === void 0 ? void 0 : _a.data);
     console.log((_c = (_b = req === null || req === void 0 ? void 0 : req.body) === null || _b === void 0 ? void 0 : _b.data) === null || _c === void 0 ? void 0 : _c.apiKey);
     const apiKeyForEcommercePaymentFromReq = req.headers['X-API-KEY'];
-    if ((apiKeyForEcommercePaymentFromReq !== config_1.default.apiKeyForEcommercePayment) || (((_e = (_d = req === null || req === void 0 ? void 0 : req.body) === null || _d === void 0 ? void 0 : _d.data) === null || _e === void 0 ? void 0 : _e.apiKey) !== config_1.default.apiKeyForEcommercePayment)) {
+    if ((apiKeyForEcommercePaymentFromReq !== config_1.default.apiKeyForEcommercePayment) || (((_d = req === null || req === void 0 ? void 0 : req.body) === null || _d === void 0 ? void 0 : _d.apiKey) !== config_1.default.apiKeyForEcommercePayment)) {
         throw new Error('Invalid API Key');
     }
     const result = yield studentSemesterPayment_service_1.StudentSemesterPaymentService.completePayment(req.body);
