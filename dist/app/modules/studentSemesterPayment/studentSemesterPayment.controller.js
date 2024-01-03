@@ -57,7 +57,7 @@ const initiatePayment = (0, catchAsync_1.default)((req, res) => __awaiter(void 0
 }));
 const completePayment = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a, _b, _c, _d, _e;
-    console.log('req?.query' + req);
+    console.log(req);
     console.log('req?.body' + (req === null || req === void 0 ? void 0 : req.body));
     // console.log('req?.headers' + req?.headers);
     // console.log('req?.cookies' + req?.cookies);

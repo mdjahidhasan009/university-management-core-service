@@ -52,7 +52,7 @@ const initiatePayment = catchAsync(async (req: Request, res: Response) => {
 });
 
 const completePayment = catchAsync(async (req: Request, res: Response) => {
-    console.log('req?.query' + req);
+    console.log(req);
     console.log('req?.body' + req?.body);
     // console.log('req?.headers' + req?.headers);
     // console.log('req?.cookies' + req?.cookies);
